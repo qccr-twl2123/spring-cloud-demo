@@ -60,9 +60,8 @@
     </build>
 
     <modules>
-        <!--<module>microservice-common</module>-->
         <module>provider</module>
-        <!--<module>microservice-student-consumer-80</module>-->
+        <module>consumer</module>
         <module>register</module>
     </modules>
 </project>
