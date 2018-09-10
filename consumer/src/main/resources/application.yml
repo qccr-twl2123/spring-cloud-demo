@@ -1,4 +1,11 @@
 server:
   port: 80
   context-path: /
- 
+
+spring:
+  application:
+    name: student-consumer
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:2001/eureka/

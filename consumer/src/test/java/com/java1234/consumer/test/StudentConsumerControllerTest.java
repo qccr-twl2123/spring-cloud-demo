@@ -2,6 +2,7 @@ package com.java1234.consumer.test;
 
 import com.alibaba.fastjson.JSON;
 import com.java1234.ConsumerApplication;
+import com.java1234.client.StudentClient;
 import com.java1234.controller.StudentConsumerController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,9 +15,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class StudentConsumerControllerTest {
     @Autowired
     private StudentConsumerController studentConsumerController;
+    @Autowired
+    private StudentClient studentClient;
 
     @Test
     public  void test(){
-        System.out.println("--^^^--"+ JSON.toJSONString(studentConsumerController.list()));
+        System.out.println("--^^^--"+ JSON.toJSONString(studentClient.list()));
     }
 }

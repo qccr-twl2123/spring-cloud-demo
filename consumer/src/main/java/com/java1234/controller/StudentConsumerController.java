@@ -2,7 +2,9 @@ package com.java1234.controller;
 import java.util.List;
 import javax.annotation.Resource;
 
+import com.java1234.client.StudentClient;
 import com.java1234.domain.Student;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +22,8 @@ public class StudentConsumerController {
 
 	@Resource
 	private RestTemplate restTemplate;
+	@Autowired
+	private StudentClient studentClient;
 	
 	private final static String PRE_HOST="http://localhost:1001";
 	
@@ -40,7 +44,8 @@ public class StudentConsumerController {
     @SuppressWarnings("unchecked")
 	@GetMapping(value="/list")
     public List<Student> list(){
-        return restTemplate.getForObject(PRE_HOST+"/student/list", List.class);
+        return studentClient.list();
+//        return restTemplate.getForObject(PRE_HOST+"/student/list", List.class);
     }
      
     /**
