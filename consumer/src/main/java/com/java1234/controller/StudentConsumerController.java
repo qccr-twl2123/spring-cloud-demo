@@ -14,7 +14,6 @@ public class StudentConsumerController {
 	@Autowired
 	private StudentClient studentClient;
 
-    @SuppressWarnings("unchecked")
 	@GetMapping(value="/list")
     public List<FaceLibrary> list(){
         System.out.println("----------consumer---------");
