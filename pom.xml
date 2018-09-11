@@ -64,5 +64,6 @@
         <module>consumer</module>
         <module>register</module>
         <module>common</module>
+        <module>config</module>
     </modules>
 </project>

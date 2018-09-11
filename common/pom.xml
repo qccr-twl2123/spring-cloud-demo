@@ -11,10 +11,6 @@
 	<artifactId>common</artifactId>
 
 	<dependencies>
-		<!--<dependency>-->
-			<!--<groupId>com.face-detect</groupId>-->
-			<!--<artifactId>face-detect-util</artifactId>-->
-		<!--</dependency>-->
 
 		<!-- aop -->
 		<dependency>
