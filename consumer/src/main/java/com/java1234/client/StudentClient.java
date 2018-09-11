@@ -1,6 +1,6 @@
 package com.java1234.client;
 
-import com.java1234.domain.Student;
+import com.java1234.bean.FaceLibrary;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -10,5 +10,5 @@ import java.util.List;
 public interface StudentClient {
 
     @RequestMapping("/student/list")
-    List<Student> list();
+    List<FaceLibrary> list();
 }
