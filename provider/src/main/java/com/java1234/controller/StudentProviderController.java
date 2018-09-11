@@ -2,7 +2,11 @@ package com.java1234.controller;
  
 import java.util.List;
 import javax.annotation.Resource;
+
+import com.java1234.common.entity.FaceLibrary;
 import com.java1234.domain.Student;
+import com.java1234.service.FaceLibraryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +25,8 @@ public class StudentProviderController {
  
     @Resource
     private StudentService studentService;
+    @Autowired
+    private FaceLibraryService faceLibraryService;
      
     /**
      * 添加或者修改学生信息
@@ -42,8 +48,8 @@ public class StudentProviderController {
      * @return
      */
     @GetMapping(value="/list")
-    public List<Student> list(){
-        return studentService.list();
+    public List<FaceLibrary> list(){
+        return faceLibraryService.queryForList("");
     }
      
     /**

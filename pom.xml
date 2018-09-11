@@ -63,5 +63,6 @@
         <module>provider</module>
         <module>consumer</module>
         <module>register</module>
+        <module>common</module>
     </modules>
 </project>

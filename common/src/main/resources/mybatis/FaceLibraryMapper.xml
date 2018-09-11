@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.java1234.common.dao.impl.mapper.FaceLibraryMapper" >
+  <resultMap id="BaseResultMap" type="com.java1234.common.entity.FaceLibrary" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="gender" property="gender" jdbcType="INTEGER" />
+    <result column="rect" property="rect" jdbcType="VARCHAR" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.java1234.common.entity.FaceLibrary" extends="BaseResultMap" >
+    <result column="feature" property="feature" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, age, gender, rect, path, create_person, create_time, update_person, update_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    feature
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.java1234.common.entity.FaceLibraryExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from face_library
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.java1234.common.entity.FaceLibraryExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from face_library
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart} , ${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from face_library
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from face_library
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.java1234.common.entity.FaceLibraryExample" >
+    delete from face_library
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.java1234.common.entity.FaceLibrary" >
+    insert into face_library (id, name, age, 
+      gender, rect, path, 
+      create_person, create_time, update_person, 
+      update_time, feature)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, 
+      #{gender,jdbcType=INTEGER}, #{rect,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, 
+      #{createPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{feature,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.java1234.common.entity.FaceLibrary" >
+    insert into face_library
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="rect != null" >
+        rect,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+      <if test="createPerson != null" >
+        create_person,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updatePerson != null" >
+        update_person,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="feature != null" >
+        feature,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="rect != null" >
+        #{rect,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="createPerson != null" >
+        #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null" >
+        #{updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="feature != null" >
+        #{feature,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.java1234.common.entity.FaceLibraryExample" resultType="java.lang.Integer" >
+    select count(*) from face_library
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update face_library
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.age != null" >
+        age = #{record.age,jdbcType=INTEGER},
+      </if>
+      <if test="record.gender != null" >
+        gender = #{record.gender,jdbcType=INTEGER},
+      </if>
+      <if test="record.rect != null" >
+        rect = #{record.rect,jdbcType=VARCHAR},
+      </if>
+      <if test="record.path != null" >
+        path = #{record.path,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createPerson != null" >
+        create_person = #{record.createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatePerson != null" >
+        update_person = #{record.updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.feature != null" >
+        feature = #{record.feature,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update face_library
+    set id = #{record.id,jdbcType=BIGINT},
+      name = #{record.name,jdbcType=VARCHAR},
+      age = #{record.age,jdbcType=INTEGER},
+      gender = #{record.gender,jdbcType=INTEGER},
+      rect = #{record.rect,jdbcType=VARCHAR},
+      path = #{record.path,jdbcType=VARCHAR},
+      create_person = #{record.createPerson,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_person = #{record.updatePerson,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      feature = #{record.feature,jdbcType=LONGVARBINARY}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update face_library
+    set id = #{record.id,jdbcType=BIGINT},
+      name = #{record.name,jdbcType=VARCHAR},
+      age = #{record.age,jdbcType=INTEGER},
+      gender = #{record.gender,jdbcType=INTEGER},
+      rect = #{record.rect,jdbcType=VARCHAR},
+      path = #{record.path,jdbcType=VARCHAR},
+      create_person = #{record.createPerson,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_person = #{record.updatePerson,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.java1234.common.entity.FaceLibrary" >
+    update face_library
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="rect != null" >
+        rect = #{rect,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="createPerson != null" >
+        create_person = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null" >
+        update_person = #{updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="feature != null" >
+        feature = #{feature,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.java1234.common.entity.FaceLibrary" >
+    update face_library
+    set name = #{name,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      gender = #{gender,jdbcType=INTEGER},
+      rect = #{rect,jdbcType=VARCHAR},
+      path = #{path,jdbcType=VARCHAR},
+      create_person = #{createPerson,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_person = #{updatePerson,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      feature = #{feature,jdbcType=LONGVARBINARY}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.java1234.common.entity.FaceLibrary" >
+    update face_library
+    set name = #{name,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      gender = #{gender,jdbcType=INTEGER},
+      rect = #{rect,jdbcType=VARCHAR},
+      path = #{path,jdbcType=VARCHAR},
+      create_person = #{createPerson,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_person = #{updatePerson,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
