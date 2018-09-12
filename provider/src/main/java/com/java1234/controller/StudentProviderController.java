@@ -7,11 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-/**
- * 服务提供者-学生信息控制器
- * @author Administrator
- *
- */
+
 @RestController
 @RequestMapping("/student")
 public class StudentProviderController {

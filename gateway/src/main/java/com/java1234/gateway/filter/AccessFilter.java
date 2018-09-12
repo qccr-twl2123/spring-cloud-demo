@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 public class AccessFilter extends ZuulFilter {
 
     private static Logger log = LoggerFactory.getLogger(AccessFilter.class);
+    private final static  Boolean  HAS_RIGHT = true;
 
     @Override
     public String filterType() {
@@ -22,7 +23,7 @@ public class AccessFilter extends ZuulFilter {
 
     @Override
     public boolean shouldFilter() {
-        return true;
+       return HAS_RIGHT? false: true;
     }
 
     @Override
