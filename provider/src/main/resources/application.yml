@@ -4,14 +4,14 @@ server:
  # 数据源配置
 spring:
   application:
-    name: student-provider
+    name: service-provider
   profiles:
       active: local
 eureka:
   instance:
     hostname: localhost  #eureka客户端主机实例名称
-    appname: microservice-student  #客户端服务名
-    instance-id: microservice-student:1001XX22 #客户端实例名称
+    appname: service-provider  #客户端服务名
+    instance-id: service-provider:1001XX22 #客户端实例名称
     prefer-ip-address: true #显示IP
   client:
     service-url:
