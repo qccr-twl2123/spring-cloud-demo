@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: service-provider
+  profiles:
+    active: local
+  cloud:
+    config: http://config-server:2003
