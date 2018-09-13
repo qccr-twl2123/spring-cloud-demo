@@ -1,6 +1,11 @@
 spring:
   application:
-    name: microservice-api-gateway
+    name: gateway-service
+  zipkin:
+      base-url: http://zipkin:9144
+  sleuth:
+      sampler:
+        percentage: 1.0
 server:
   port: 8050
 eureka:
