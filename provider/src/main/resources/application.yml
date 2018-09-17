@@ -7,11 +7,6 @@ spring:
     name: service-provider
   profiles:
     active: local
-  zipkin:
-    base-url: http://zipkin:9144
-  sleuth:
-    sampler:
-      percentage: 1
 eureka:
   instance:
     hostname: localhost  #eureka客户端主机实例名称
